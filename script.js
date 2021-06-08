@@ -5,34 +5,41 @@ function theGame(userHand){
             paper : 'rock',
             scissors : 'paper'
         }
-        return args.map(x=>[pairs[x]])
+        console.log((args.map(x=>[pairs[x]]))[0]);
+        return (args.map(x=>[pairs[x]]))[0];
     }
-
-    let userScore = 0;
-    let computerScore = 0;
-    let gameCount = 0;
-    let arr = ['rock','paper','scissors']
     function computerInput(){
         return arr[Math.floor(Math.random()*3)];
     }
+
+    let userScore = 0;
+    let drawScore = 0;
+    let computerScore = 0;
+    let gameCount = 0;
+    let arr = ['rock','paper','scissors']
+
     while(gameCount<5){
+
+        let computerHand = computerInput();
+        console.log(computerHand);
         let userInput = prompt('Rock Paper Scissors?')
         let userHand = userInput.toLowerCase();
-        let computerHand = computerInput();
         if(userHand===computerHand){
-            console.log('Draw',userHand,computerHand)
+            console.log('Draw',userHand,computerHand);
+            drawScore++;
             gameCount++;
-        }else if(whoWins(userHand)===computerHand){
+        }else if(whoWins(userHand)==computerHand){
             console.log('You win',userHand,computerHand)
             userScore++;
             gameCount++;
-        }else{
+        }else if(whoWins(computerHand)==userHand) {
             console.log('You Lost',userHand,computerHand)
             computerScore++;
             gameCount++;
         }
+        console.log('Game number:'+gameCount+' Your Score: '+userScore+' Computer Score: '+computerScore+' Draw:'+drawScore)
         if(gameCount==5){
-            return gameCount+''+'Puanın:'+userScore+'Bilgisayar:'+computerScore;
+            return 'Game number:'+gameCount+' Your Score: '+userScore+' Computer Score: '+computerScore;
         }
         
     }
